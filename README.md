@@ -15,7 +15,9 @@
     <a href="https://github.com/unknown-telegram/unknown-telegram/issues">Request Feature</a>
     <br />
     <br />
+    <a href="https://github.com/unknown-telegram/unknown-telegram/blob/main/LICENSE"><img src="https://img.shields.io/github/license/unknown-telegram/unknown-telegram" alt="GitHub license"></a>
     <a href="https://github.com/psf/black"><img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Code style: black"></img></a>
+    <a href="https://www.codefactor.io/repository/github/unknown-telegram/unknown-telegram/overview/main"><img src="https://www.codefactor.io/repository/github/unknown-telegram/unknown-telegram/badge/main" alt="CodeFactor" /></a>
     <a href="https://wakatime.com/badge/github/unknown-telegram/unknown-telegram"><img src="https://wakatime.com/badge/github/unknown-telegram/unknown-telegram.svg" alt="Wakatime"></img></a>
   </p>
 </p>
