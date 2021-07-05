@@ -18,11 +18,7 @@ class Module(sdk.Module):
     def restart(self):
         self.bot.storage.sync()  # sync storage before restart
         python = sys.executable
-        if sys.platform == "win32":
-            sts = os.spawnv(os.P_WAIT, python, [python, "-m", __main__.__package__])
-            os._exit(sts)
-        else:
-            os.execl(python, python, "-m", __main__.__package__)
+        os.execl(python, python, "-m", __main__.__package__) # FUCK WINDOWS!
 
     async def help_cmd(self, event: sdk.Event, command: sdk.Command):
         help_dict = {}
