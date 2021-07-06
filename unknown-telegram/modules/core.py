@@ -142,3 +142,16 @@ class Module(sdk.Module):
         await sdk.send(
             event.message, f'<b>Successfully loaded module "{mod.name}".</b>'
         )
+
+    async def lsmod_cmd(self, event: sdk.Event, command: sdk.Command):
+        modules = self.bot.storage.dict.get("modules", [])
+        if len(modules) == 0:
+            await sdk.send(event.message, "<b>There are no remote modules.</b>")
+            return
+        await sdk.send(
+            event.message,
+            "<b>Remote modules:</b>\n\n"
+            + "\n".join(
+                [f"{ind+1} - {url}<code></code>" for ind, url in enumerate(modules)]
+            ),
+        )
