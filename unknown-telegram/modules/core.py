@@ -175,5 +175,5 @@ class Module(sdk.Module):
             await sdk.send(event.message, "<b>Invalid module index.</b>")
             return
         await sdk.send(
-            event.message, f"<b>Deleted module</b> <code>{modules.pop(index-1)}</code>"
+            event.message, f'<b>Deleted module "</b><code>{modules.pop(index-1)}</code><b>".</b>'
         )
