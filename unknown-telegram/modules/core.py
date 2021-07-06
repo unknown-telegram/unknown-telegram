@@ -152,6 +152,28 @@ class Module(sdk.Module):
             event.message,
             "<b>Remote modules:</b>\n\n"
             + "\n".join(
-                [f"{ind+1} - {url}<code></code>" for ind, url in enumerate(modules)]
+                [
+                    f"<b>• {ind+1}:</b> <code>{url}</code>"
+                    for ind, url in enumerate(modules)
+                ]
             ),
+        )
+
+    # TODO: maybe delete modules by url?
+    async def rmmod_cmd(self, event: sdk.Event, command: sdk.Command):
+        if command.arg == "":
+            await sdk.send(event.message, "<b>You need to specify module index.</b>")
+            return
+
+        # idk how to do this
+        modules, index = self.bot.storage.dict.get("modules", []), 0
+        try:
+            index = int(command.arg)
+        except:
+            pass
+        if index < 1 or index > len(modules):
+            await sdk.send(event.message, "<b>Invalid module index.</b>")
+            return
+        await sdk.send(
+            event.message, f"<b>Deleted module</b> <code>{modules.pop(index-1)}</code>"
         )
