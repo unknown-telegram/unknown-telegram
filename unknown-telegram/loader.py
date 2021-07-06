@@ -49,6 +49,7 @@ class Modules:
 
         self.modules.append(mod)
         self.names.append(mod.__module__)
+        logger.info('Successfully loaded module "%s"', mod.name)
 
     def load_spec(self, path: str, name: str = "") -> importlib.machinery.ModuleSpec:
         """Load module spec from given path"""
@@ -58,7 +59,7 @@ class Modules:
             + ((os.path.basename(path)[:-3].lower()) if name == "" else name)
         )
         if name in self.names:
-            raise Exception(f'Module name "{name}" is already used')
+            raise AlreadyLoaded(f'Module name "{name}" is already used')
         return importlib.util.spec_from_file_location(
             name,
             path,
@@ -91,3 +92,7 @@ class Modules:
             # Cannot remove on windows ¯\_(ツ)_/¯
             pass
         return mod
+
+
+class AlreadyLoaded(Exception):
+    pass

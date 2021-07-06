@@ -8,17 +8,19 @@ import sys
 from git import Repo
 
 from .. import __main__, bot, const, sdk
+from ..loader import AlreadyLoaded
+from ..logging import logger
 
 
 class Module(sdk.Module):
     def __init__(self):
         self.name: str = "Core"
-        self.bot: bot.Bot = None
+        self.bot: bot.Bot
 
     def restart(self):
         self.bot.storage.sync()  # sync storage before restart
         python = sys.executable
-        os.execl(python, python, "-m", __main__.__package__) # FUCK WINDOWS!
+        os.execl(python, python, "-m", __main__.__package__)  # FUCK WINDOWS!
 
     async def help_cmd(self, event: sdk.Event, command: sdk.Command):
         help_dict = {}
@@ -54,7 +56,7 @@ class Module(sdk.Module):
         try:
             origin = repo.create_remote("origin", const.GIT_URL)
         except:
-            await sdk.send(event.message, "<b>Cannot create origin!</b>")
+            await sdk.send(event.message, "<b>Cannot create origin.</b>")
             return
 
         # Get local commit hash
@@ -69,7 +71,7 @@ class Module(sdk.Module):
             fetch = origin.fetch()
             remote_hash = str(fetch[0].commit)
         except:
-            await sdk.send(event.message, "<b>Cannot fetch from origin!</b>")
+            await sdk.send(event.message, "<b>Cannot fetch from origin.</b>")
             return
 
         # Create main branch
@@ -80,7 +82,7 @@ class Module(sdk.Module):
 
         # Compare local and remote hash
         if local_hash == remote_hash:
-            await sdk.send(event.message, "<b>Already up to date!</b>")
+            await sdk.send(event.message, "<b>Already up to date.</b>")
             return
 
         # Pull changes
@@ -100,7 +102,7 @@ class Module(sdk.Module):
                 ]
             )
         except:
-            await sdk.send(event.message, "<b>Cannot update dependencies!</b>")
+            await sdk.send(event.message, "<b>Cannot update dependencies.</b>")
             return
 
         message = (
@@ -112,3 +114,31 @@ class Module(sdk.Module):
             "text": "<b>Update completed!</b>",
         }
         self.restart()
+
+    async def dlmod_cmd(self, event: sdk.Event, command: sdk.Command):
+        if command.arg == "":
+            await sdk.send(
+                event.message, "<b>You need to specify module name or URL.</b>"
+            )
+            return
+
+        url = (
+            command.arg
+            if (
+                command.arg.startswith("http://") or command.arg.startswith("https://")
+            )  # simple url checking
+            else const.MODULES_URL.format(command.arg)
+        )
+        try:
+            mod = self.bot.load_module_from_url(url)
+        except Exception as ex:
+            logger.exception('Cannot load module from "%s": %s', url, ex)
+            if isinstance(ex, AlreadyLoaded):
+                await sdk.send(event.message, "<b>This module is already loaded.</b>")
+            else:
+                await sdk.send(event.message, "<b>Cannot load module.</b>")
+            return
+        self.bot.storage.dict.setdefault("modules", []).append(url)
+        await sdk.send(
+            event.message, f'<b>Successfully loaded module "{mod.name}".</b>'
+        )

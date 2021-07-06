@@ -25,6 +25,7 @@ class Bot:
 
     def load_module(self, path: str) -> loader.Module:
         """Load module from given path"""
+        logger.info('Loading module "%s"', path)
         spec = self.modules.load_spec(path)
         mod = self.modules.load_module_from_spec(spec)
         mod.storage = self.storage.dict.setdefault(mod.__module__, {})
@@ -33,6 +34,7 @@ class Bot:
 
     def load_module_from_url(self, url: str) -> loader.Module:
         """Load module from given URL"""
+        logger.info('Loading module from "%s"', url)
         mod = self.modules.load_module_from_url(url)
         mod.storage = self.storage.dict.setdefault(mod.__module__, {})
         self.modules.register_module(mod)

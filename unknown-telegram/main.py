@@ -52,12 +52,10 @@ async def main():
             ),  # pasted from ftg
         ]:
             path = os.path.join(base_folder, file)
-            logger.info('Loading module "%s"', path)
             try:
                 mod = _bot.load_module(path)
                 if file == "core.py":
                     mod.bot = _bot
-                logger.info('Successfully loaded module "%s"', mod.name)
             except Exception as ex:
                 logger.exception('Cannot load module "%s": %s', path, ex)
 
@@ -65,14 +63,12 @@ async def main():
         for url in [
             *map(
                 const.MODULES_URL.format,
-                const.MODULES_DEFAULT + _bot.storage.dict.get("modules_from_repo", []),
+                const.MODULES_DEFAULT,
             ),
             *_bot.storage.dict.get("modules", []),
         ]:
-            logger.info('Loading module from "%s"', url)
             try:
                 mod = _bot.load_module_from_url(url)
-                logger.info('Successfully loaded remote module "%s"', mod.name)
             except Exception as ex:
                 logger.exception('Cannot load module from "%s": %s', url, ex)
 
