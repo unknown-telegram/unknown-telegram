@@ -67,7 +67,7 @@ _Example for Ubuntu. Advanced users can install this themselves._
     ```sh
     $ python3 -m unknown-telegram
     ```
-    Also, you can use a convenient way to launch a bot, for example: _screen, service, manually_.
+    Also, you can use a convenient way to launch a bot, for example: _screen, service, pm2_.
 
 _Maybe, i'll write a wiki someday._
 
