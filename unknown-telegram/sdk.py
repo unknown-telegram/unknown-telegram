@@ -60,10 +60,10 @@ async def send(message, content, **kwargs) -> list:
 
     if isinstance(content, str) and not kwargs.get("force_file", False):
         text, entities = html.parse(content)
-        if message.sender_id != (await message.client.get_me()).id:
-            res.append(await message.reply(html.unparse(text[:4096], entities)))
-        else:
+        if message.out:
             res.append(await message.edit(html.unparse(text[:4096], entities)))
+        else:
+            res.append(await message.reply(html.unparse(text[:4096], entities)))
 
         text = text[4096:]
         while len(text) > 0:
