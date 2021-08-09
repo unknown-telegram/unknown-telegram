@@ -3,7 +3,7 @@
 
 import os
 
-# DO NOT EDIT THIS VALUES!!
+# DO NOT EDIT THESE VALUES!!
 APP_ID = 6
 APP_HASH = "eb06d4abfb49dc3eeb1aeb98ae0f581e"
 APP_VERSION = "7.3.1 (22065)"
