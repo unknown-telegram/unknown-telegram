@@ -4,11 +4,11 @@
 import os
 
 # DO NOT EDIT THESE VALUES!!
-APP_ID = 6
-APP_HASH = "eb06d4abfb49dc3eeb1aeb98ae0f581e"
-APP_VERSION = "7.3.1 (22065)"
-APP_DEVICE_MODEL = "OnePlusONEPLUS A5010"
-APP_SYSTEM_VERSION = "SDK 29"
+APP_ID = 10840
+APP_HASH = "33c45224029d59cb3ad0c16134215aeb"
+APP_VERSION = "7.9.2"
+APP_DEVICE_MODEL = "iPhone XS"
+APP_SYSTEM_VERSION = "14.4.1"
 MODULES_FOLDER = "modules"
 MODULES_URL = "https://raw.githubusercontent.com/unknown-telegram/modules/main/{}.py"
 MODULES_DEFAULT = ["dump", "suspension", "afk", "sysinfo", "terminal"]
