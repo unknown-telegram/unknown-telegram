@@ -18,4 +18,5 @@ MESSAGE_ERROR = "<b>An error occurred while executing the module.</b>"
 MESSAGE_SENDING_MEDIA = "<b>Sending media...</b>"
 GIT_URL = "https://github.com/unknown-telegram/unknown-telegram.git"
 ROOT_DIRECTORY = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # lol
-DATA_FOLDER = ("data" if "-docker" not in sys.argv else "/data")
+IS_DOCKER = ("-docker" in sys.argv)
+DATA_FOLDER = ("data" if not IS_DOCKER else "/data")

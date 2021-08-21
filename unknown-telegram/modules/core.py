@@ -42,6 +42,12 @@ class Module(sdk.Module):
         self.restart()
 
     async def update_cmd(self, event: sdk.Event, command: sdk.Command):
+        if const.IS_DOCKER:
+            await sdk.send(
+                event.message, "<b>You need to pull Docker Image manually.</b>"
+            )
+            return
+
         await sdk.send(event.message, "<b>Fetching last version...</b>")
         repo = Repo(const.ROOT_DIRECTORY)
 
