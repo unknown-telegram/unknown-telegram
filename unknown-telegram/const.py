@@ -2,6 +2,7 @@
 # Coded by @maxunof with power of Senko!
 
 import os
+import sys
 
 # DO NOT EDIT THESE VALUES!!
 APP_ID = 10840
@@ -17,4 +18,4 @@ MESSAGE_ERROR = "<b>An error occurred while executing the module.</b>"
 MESSAGE_SENDING_MEDIA = "<b>Sending media...</b>"
 GIT_URL = "https://github.com/unknown-telegram/unknown-telegram.git"
 ROOT_DIRECTORY = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # lol
-DATA_FOLDER = "data"
+DATA_FOLDER = ("data" if "-docker" not in sys.argv else "/data")

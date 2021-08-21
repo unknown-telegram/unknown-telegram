@@ -18,7 +18,7 @@ async def main():
         logger.warning("Config file does not exist. Creating")
         cfg.save(const.CONFIG_FILE)
 
-    if len(sys.argv) > 1 and sys.argv[1] == "-add":
+    if "-add" in sys.argv:
         name = ""
         while name == "":
             name = input("Enter session name: ").strip()
