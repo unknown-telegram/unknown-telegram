@@ -63,7 +63,7 @@ _Example for Ubuntu. Advanced users can install this themselves._
     ```
     The bot will ask for a phone number and code. This is necessary for the authorization procedure in Telegram.<br/>
     **Your data will sent only to the Telegram server.**
-2. Run the bot
+2. Run a bot
     ```sh
     $ python3 -m unknown-telegram
     ```
