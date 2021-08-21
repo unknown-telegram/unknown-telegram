@@ -24,7 +24,7 @@ async def main():
             name = input("Enter session name: ").strip()
 
         try:
-            os.mkdir("data/")
+            os.mkdir(const.DATA_FOLDER)
         except:
             pass
         _bot = bot.Bot(os.path.join(const.DATA_FOLDER, name), cfg)
