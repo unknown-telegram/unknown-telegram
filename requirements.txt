@@ -1,3 +1,4 @@
-Telethon==1.22.0
-requests==2.25.1
-GitPython==3.1.18
+Telethon==1.26.0
+requests==2.28.1
+GitPython==3.1.29
+chardet==5.1.0
