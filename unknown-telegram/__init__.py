@@ -1,2 +1,2 @@
 # -*- coding: utf-8 -*-
-# Coded by @maxunof with power of Senko!
+# Coded by @altfoxie with power of Senko!

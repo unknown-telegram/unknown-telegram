@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Coded by @maxunof with power of Senko!
+# Coded by @altfoxie with power of Senko!
 
 if __package__ != "unknown-telegram":
     print("You need to run this as a module, not a script.")
